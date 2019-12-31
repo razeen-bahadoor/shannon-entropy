@@ -1,6 +1,6 @@
 public class tuple implements Comparable<tuple>  {
-    char letter;
-    double probability;
+    private char letter;
+    private double probability;
     public tuple(char letter, double probability) {
         this.letter = letter;
         this.probability=probability;
