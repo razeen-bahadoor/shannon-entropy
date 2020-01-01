@@ -1,4 +1,5 @@
 import javax.print.DocFlavor;
+import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -31,14 +32,27 @@ public class Main {
         for (tuple t: probability) {
             System.out.println(t.getProbability());
         }
-        int p = partition(probability);
-        System.out.println(p);
-            /*setup probability table*/
 
-
+        gencodes(probability ,0, probability.size());
+        for(tuple t : probability) {
+            System.out.println(t.getCode());
+        }
     }
 
 
+    private static void gencodes(ArrayList<tuple> l , int start, int end) {
+
+        int partition_index = partition(l);
+        if (l.size() == 1){return;}
+        for(int i=0; i<= partition_index; i++) {
+            l.get(i).setCodezero();
+        }
+        for (int j=partition_index+1; j<l.size(); j++) {
+            l.get(j).setCodeone();
+        }
+        gencodes(new ArrayList<tuple>( l.subList(0,partition_index+1)), 0 ,partition_index);
+        gencodes(new ArrayList<tuple>(l.subList(partition_index+1,l.size())), partition_index+1, l.size());
+    }
 
     private static int partition(ArrayList<tuple> list) {
         int parition_index = 0;
