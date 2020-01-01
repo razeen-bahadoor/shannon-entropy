@@ -1,15 +1,15 @@
 public class tuple implements Comparable<tuple>  {
-    private char letter;
+    private String letter;
     private double probability;
     private String code="";
-    public tuple(char letter, double probability) {
+    public tuple(String letter, double probability) {
         this.letter = letter;
         this.probability=probability;
 
 
     }
 
-    public char getLetter() {
+    public String getLetter() {
 
         return this.letter;
     }
@@ -36,6 +36,7 @@ public class tuple implements Comparable<tuple>  {
     public String getCode() {
         return this.code;
     }
+
     @Override
     public int compareTo(tuple t) {
         if (this.probability >= t.probability) {
